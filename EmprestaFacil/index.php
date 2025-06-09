@@ -1,16 +1,26 @@
 <?php
 
-echo "AQUI VAI FICAR MEU PRIMEIRO PROJETO FODA COM PHP<br><br>";
+session_start();
 
-include 'services/UsuarioService.php';
-include 'repositories/EmprestimoDAO.php';
-include 'services/EquipamentoService.php';
+require_once 'Router.php';
 
-$empRepo = new EmprestimoDAO();
+$router = new Router();
+$router->handleRequest();
+// session_start();
+// include_once 'views/loginView.php';
 
-$empRepo-> create(2,2);
+// // echo "AQUI VAI FICAR MEU PRIMEIRO PROJETO FODA COM PHP<br><br>";
 
-// $service = new UsuarioService();c
+// include 'services/UsuarioService.php';
+// include 'repositories/EmprestimoDAO.php';
+// include 'services/EquipamentoService.php'; -->
+
+// $empRepo = new EmprestimoDAO();
+
+// $empRepo-> create(2,2);
+
+// $service = new UsuarioService();
+// $service->cadastrarUsuario("Wesley","Wesley@gmail.com","1234");
 // $equipamentoService = new EquipamentoService();
 // $emprestimoService = new EmprestimoService();
 
@@ -19,8 +29,8 @@ $empRepo-> create(2,2);
 
 // echo $service->listarUsuarios();
 
-// $equipamentoRepository->create("Furadeira",10);
-// $equipamentoRepository->create("Martelo",15);
+// $equipamentoService->cadastrarEquipamento("Furadeira",10);
+// $equipamentoService->cadastrarEquipamento("Martelo",15);
 
 // $equipamentos = $equipamentoRepository->findAll();
 
@@ -31,4 +41,4 @@ $empRepo-> create(2,2);
 // $data_atual = date("d/m/Y");
 // $data_nova = date("d/m/Y", strtotime("+10 days"));
 // echo date("d/m/Y", $data_nova);
-// echo "data atual: $data_atual <br>nova data: $data_nova";
+// echo "data atual: $data_atual <br>nova data: $data_nova"; -->

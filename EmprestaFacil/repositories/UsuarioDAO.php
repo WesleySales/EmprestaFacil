@@ -1,13 +1,13 @@
 <?php
 
-include_once 'conexao/ConexaoMySQL.php';
+include_once 'conexao/ConexaoDB.php';
 
 class UsuarioDAO{
 
     private $conexao;
 
     public function __construct(){ 
-        $this->conexao = ConexaoMySQL::getConexao();
+        $this->conexao = ConexaoDB::getConexao();
     }
 
     public function create($nome,$email,$senha){
@@ -15,7 +15,7 @@ class UsuarioDAO{
 
         $stmt = $this->conexao->prepare($sql);
         
-        $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+        $senhaHash = password_hash($senha, PASSWORD_DEFAULT); //passar essa funcao para o UsuarioService
 
         $stmt->bindValue(':nome', $nome);
         $stmt->bindValue(':email', $email);
@@ -56,6 +56,21 @@ class UsuarioDAO{
             return [];
         }
     }
+    
+    public function findByEmail($email){
+        $sql = "SELECT * from usuarios where email_usuario= :email";
+
+        $stmt = $this -> conexao -> prepare($sql);
+        $stmt->bindValue(':email', $email);
+        try{
+            $stmt -> execute();
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            echo "Erro ao buscar usuários: " . $e->getMessage();
+            return [];
+        }
+    }
+
     // public function update(){}
     public function delete($id){
         $sql = "DELETE FROM usuarios where id_usuario= :id";
