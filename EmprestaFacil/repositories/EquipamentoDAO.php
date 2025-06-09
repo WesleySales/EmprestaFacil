@@ -1,13 +1,13 @@
 <?php
 
-include_once 'conexao/ConexaoMySQL.php';
+include_once 'conexao/ConexaoDB.php';
 
 class EquipamentoDAO{
 
     private $conexao;
 
     public function __construct(){ 
-        $this->conexao = ConexaoMySQL::getConexao();
+        $this->conexao = ConexaoDB::getConexao();
     }
 
     public function create($nome, $quantidade_total){
